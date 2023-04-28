@@ -1,0 +1,2 @@
+# Date - Lesson - What I Learned
+4-27-2023 - Foundations/HTML/Links and Images - Learned about linking to other pages, anchor tags, linking to images, img tag.

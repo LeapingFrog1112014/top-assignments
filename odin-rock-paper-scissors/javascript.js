@@ -65,6 +65,7 @@ function game () {
     let computerScore = 0
 
     while (playerScore != 3 || computerScore != 3) {
+        console.log("Player: " + playerScore + " Computer: " + computerScore)
         let playerSelection = undefined
         let computerSelection = getComputerChoice()
 
@@ -83,5 +84,14 @@ function game () {
         else {
             continue
         }
+    }
+
+    if (playerScore == 3) {
+        console.log("You win!")
+        return
+    }
+    else {
+        console.log("You lose.")
+        return
     }
 }

@@ -68,8 +68,9 @@ function game () {
         let playerSelection = undefined
         let computerSelection = getComputerChoice()
 
-        while (playerSelection.toLowerCase() != "rock" && playerSelection.toLowerCase() != "paper" && playerSelection.toLowerCase() != "scissors") {
+        while (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
             playerSelection = prompt("Enter Rock Paper or Scissors")
+            playerSelection = playerSelection.toLowerCase()
         }
         let result = playRound(playerSelection, computerSelection)
 
@@ -77,7 +78,7 @@ function game () {
             playerScore++
         }
         else if (result[1] == true) {
-            comptuerScore++
+            computerScore++
         }
         else {
             continue

@@ -1,4 +1,4 @@
-function fizzBuzz (num) {
+function fizzBuzz (num, str) {
     if (num % 3 == 0) {
         if (num % 5 == 0) {
             return "FizzBuzz";
@@ -12,13 +12,16 @@ function fizzBuzz (num) {
     }
 }
 
-function iterate (num) {
-    for (let i = 1; i >= num; i++) {
+function iterate () {
+    let num = prompt("Enter a number to iterate to");
+
+    for (let i = 1; i <= num; i++) {
         if (i % 3 == 0 || i % 5 == 0) {
             console.log(fizzBuzz(i));
         }
         else {
-            console.log(i)
+            console.log(i);
         }
-    }    
+    }
+    return;
 }

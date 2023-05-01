@@ -64,7 +64,7 @@ function game () {
     let playerScore = 0
     let computerScore = 0
 
-    while (playerScore != 3 || computerScore != 3) {
+    while (playerScore != 3 && computerScore != 3) {
         console.log("Player: " + playerScore + " Computer: " + computerScore)
         let playerSelection = undefined
         let computerSelection = getComputerChoice()

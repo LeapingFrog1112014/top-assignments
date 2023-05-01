@@ -12,5 +12,18 @@ function getComputerChoice () {
 }
 
 function playRound (playerSelection, computerSelection) {
-    
+    if (playerSelection == computerSelection) {
+        return [false, false]
+    }
+    else if (playerSelection == "rock") {
+
+    }
+
+    else if (playerSelection == "paper") {
+
+    }
+
+    else {
+        
+    }
 }

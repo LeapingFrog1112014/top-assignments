@@ -59,3 +59,7 @@ function playRound (playerSelection, computerSelection) {
     console.log(announce(result, playerSelection, computerSelection))
     return result
 }
+
+function game () {
+    
+}

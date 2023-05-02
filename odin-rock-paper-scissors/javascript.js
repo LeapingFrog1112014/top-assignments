@@ -1,97 +1,97 @@
-function getComputerChoice () {
-    let num = Math.floor(Math.random() * 2)
+let playerScore = 0;
+let computerScore = 0;
+const scoreBoard = document.querySelector('.header');
+
+const scoreBoardPlayer = document.createElement('p');
+scoreBoardPlayer.innerText = `Player: ${playerScore}`;
+scoreBoard.appendChild(scoreBoardPlayer);
+
+const scoreBoardComputer = document.createElement('p');
+scoreBoardComputer.innerText = `Computer: ${computerScore}`;
+scoreBoard.appendChild(scoreBoardComputer);
+
+const winnerAnnouncement = document.createElement('p');
+winnerAnnouncement.innerText = "Make a choice to start the game";
+scoreBoard.appendChild(winnerAnnouncement);
+
+function getComputerSelection () {
+    let num = Math.floor(Math.random() * 2);
     if (num == 0) {
-        return "rock"
+        return "rock";
     }
     else if (num == 1) {
-        return "paper"
+        return "paper";
     }
     else {
-        return "scissors"
+        return "scissors";
     }
 }
 
-function announce (result, playerSelection, computerSelection) {
-    if (result[0] == false) {
-        if (result[1] == false) {
-            return(playerSelection + " is equal to " + computerSelection + ". Draw.")
+function modifyScoreBoard (results) {
+    if (results[1] == false) {
+        if(results[0] == true) {
+            playerScore++;
+            scoreBoardPlayer.innerText = `Player: ${playerScore}`;
         }
         else {
-            return(playerSelection + " loses to " + computerSelection+ ". You lose.")
+            computerScore++;
+            scoreBoardComputer.innerText = `Computer: ${computerScore}`;
+        }
+    }
+    return;
+}
+
+function announceResults (playerSelection, computerSelection, results) {
+    if (results[1] == false) {
+        if (results[0] == true) {
+            winnerAnnouncement.innerText = `${playerSelection} beats ${computerSelection}. You win!`;
+        }
+        else {
+            winnerAnnouncement.innerText = `${playerSelection} loses to ${computerSelection}. You lose.`;
         }
     }
     else {
-        return(playerSelection + " beats " + computerSelection + ". You win!")
+        winnerAnnouncement.innerText = `You both selected ${playerSelection}. Draw!`;
     }
 }
-
 function playRound (playerSelection, computerSelection) {
-    let result = undefined
+    let result = undefined;
     if (playerSelection == computerSelection) {
-        result = [false, false] // Draw case
+        result = [false, true];
     }
     else if (playerSelection == "rock") {
-        if (computerSelection == "paper") {
-            result = [false, true]
+        if(computerSelection == "paper") {
+            result = [false, false];
         }
         else {
-            result = [true, false]
+            result = [true, false];
         }
     }
-
     else if (playerSelection == "paper") {
         if (computerSelection == "rock") {
-            result = [true , false]
+            result = [true, false];
         }
         else {
-            result = [false, true]
+            result = [false, false];
         }
     }
-
     else {
         if (computerSelection == "rock") {
-            result = [false , true]
+            result = [false, false];
         }
         else {
-            result = [true, false]
+            result = [true, false];
         }
     }
-    console.log(announce(result, playerSelection, computerSelection))
-    return result
+    modifyScoreBoard(result);
+    announceResults(playerSelection, computerSelection, result);
+    return;
 }
 
-function game () {
-    let playerScore = 0
-    let computerScore = 0
 
-    while (playerScore != 3 && computerScore != 3) {
-        console.log("Player: " + playerScore + " Computer: " + computerScore)
-        let playerSelection = undefined
-        let computerSelection = getComputerChoice()
 
-        while (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
-            playerSelection = prompt("Enter Rock Paper or Scissors")
-            playerSelection = playerSelection.toLowerCase()
-        }
-        let result = playRound(playerSelection, computerSelection)
-
-        if (result[0] == true) {
-            playerScore++
-        }
-        else if (result[1] == true) {
-            computerScore++
-        }
-        else {
-            continue
-        }
-    }
-
-    if (playerScore == 3) {
-        console.log("You win!")
-        return
-    }
-    else {
-        console.log("You lose.")
-        return
-    }
-}
+window.addEventListener('keydown', (event) => {
+    let playerChoice = document.querySelector(`div[data-key="${event.code}"]`)
+    let pChoice = (playerChoice.getAttribute('choice'));
+    playRound(pChoice, getComputerSelection());
+})

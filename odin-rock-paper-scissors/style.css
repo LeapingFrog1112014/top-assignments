@@ -1,0 +1,26 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.container {
+    display:flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.header {
+    width:50%;
+    align-items: center;
+}
+
+.container.images {
+    margin: 100px;
+    justify-content: space-between;
+}
+
+.container.ui {
+    justify-content: center;
+    margin: 20px;
+}

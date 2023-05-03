@@ -1,3 +1,11 @@
+// Functions
+
+function operate (userData) {
+    
+}
+
+// Calculator Display Setup
+
 const userData = {
     num1: '1',
     operator: '+',
